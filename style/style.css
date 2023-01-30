@@ -1,5 +1,5 @@
 body {
-    width: 1200px;
+    width: 100%;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -12,7 +12,7 @@ header {
 }
 
 .container {
-    width: 1160px;
+    max-width: 1160px;
     margin: 0 auto;
     text-align: center;
 }
@@ -165,7 +165,7 @@ header {
 .option_list {
     /* это блок с квадратами*/
     display: flex;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
     align-items: center;
     height: 377px;
@@ -180,7 +180,7 @@ header {
     justify-content: center;
     align-items: end;
     margin: 8px 0;
-    width: 482px;
+    width: 25%;
     height: 377px;
     position: relative;
 }
@@ -676,6 +676,7 @@ input[value="none"] {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../images/background/section-3.jpg);
     height: 854px;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     padding-top: 98px;
     z-index: -2;
@@ -878,11 +879,12 @@ input[value="0"] {
 
 
 .animeted_photo {
-    border-radius: 50%;
+    border-radius: 50%; 
     box-shadow: 0 0 0 5px rgb(31, 218, 181, 0.2);
     width: 143px;
     height: 142px;
-    animation: animate 1s ease-out;
+    animation: all 1s ease-out;
+    animation-name: animate;
 }
 
 @keyframes animate {
