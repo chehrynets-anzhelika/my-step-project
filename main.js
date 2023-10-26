@@ -1,6 +1,4 @@
 'use strict'
-
-//вкладка OurServices табы
 let servicesItems = document.querySelectorAll(".our_services_item");
 const servicesText = document.querySelectorAll(".our_services");
 
@@ -28,11 +26,9 @@ function onItemClick(item) {
   })
 }
 
-// далее вкладка Our Amazing Work - создание новых элементов и фильтр
 
 let liParent = document.querySelector(".amazing_work_foto");
 
-//смена блоков функции при нажатии на одну и ту же кнопку
 function toggleFunc() {
   let el = this;
   return [
@@ -49,7 +45,6 @@ function toggleFunc() {
 $("#load_more_btn").click(toggleFunc);
 
 
-// лоадер - 1 на все 3 случая
 let loader = $(`<div class="middle">         
 <div class="bar bar1"></div>
 <div class="bar bar2"></div>
@@ -65,7 +60,6 @@ let loader = $(`<div class="middle">
 let a = 2;
 let b ='';
 
-// создаю блок с элементами (имитация загрузки)
 function createBlockPhoto(a) {
  setTimeout(function () {
     for (let i = 1; i <= 12; i++) {
@@ -114,13 +108,10 @@ function createBlockPhoto(a) {
       
     });
 
-    // знаходжу всі li у верхньому списку категорій
     const categories = [...document.querySelector(".amazing_work_list").children];
-    // знаходжу обрану категорію по наявності класу 'click' за допомогою методу filter
     const selectedCategory = categories.filter((item) =>
       item.classList.contains("click")
     )[0];
-    // якщо дата-атрибут обраної категорії НЕ дорівнює 'all' - починаємо фільтрацію фото
     if (selectedCategory.dataset["title"] !== "all") {
       let allPhoto = document.querySelectorAll(".amazing_foto_item");
       allPhoto.forEach(function (item) {
@@ -137,13 +128,11 @@ function createBlockPhoto(a) {
       setTimeout(()=>{$(loader).hide()}, 2000);
 }
 
-// фильтр из фоток
-
-let itemOfWork = document.querySelector(".amazing_work_list"); // ul родитель, на который повешу делегирование
+let itemOfWork = document.querySelector(".amazing_work_list"); 
 
 itemOfWork.addEventListener("click", function (event) {
 
-  let allPhoto = document.querySelectorAll(".amazing_foto_item"); // блк из фоток
+  let allPhoto = document.querySelectorAll(".amazing_foto_item");
 
 
   if (event.target.tagName !== 'LI') return false;
@@ -160,8 +149,7 @@ itemOfWork.addEventListener("click", function (event) {
 
 });
 
-// делаю фокус при нажатии на каждый пункт меню
-let itemList = document.querySelectorAll(".amazing_work_item"); // элементы ли в секции
+let itemList = document.querySelectorAll(".amazing_work_item"); 
 
 itemList.forEach(function (item) {
   item.addEventListener("click", function () {
@@ -173,21 +161,17 @@ itemList.forEach(function (item) {
 })
 
 
-
-// дальше идет карусель 
-
-let slides = document.querySelectorAll(".slide");   // блок с текстом и фио
-let mainPhoto = document.querySelector(".client_photo"); // главное фото в центре
-let photos = document.querySelectorAll(".client_little_photo"); // блок с маленькими фото
+let slides = document.querySelectorAll(".slide"); 
+let mainPhoto = document.querySelector(".client_photo"); 
+let photos = document.querySelectorAll(".client_little_photo"); 
 let list = document.querySelectorAll(".img_wrap");
-const rightArrow = document.querySelector(".right"); // правая стрелка
-const leftArrow = document.querySelector(".left"); // левая стрелка
+const rightArrow = document.querySelector(".right"); 
+const leftArrow = document.querySelector(".left");
 
 
 
 
 let counter = 0;
-// клик на левую стрелку
 leftArrow.addEventListener("click", function(){
 slides.forEach(item => item.classList.remove("curry"));
 counter--;
@@ -200,7 +184,6 @@ changeBigPhoto();
 
 });
 
-// клик на правую стрелку
 rightArrow.addEventListener("click", function(){
   slides.forEach(item => item.classList.remove("curry"));
   counter++;
@@ -211,7 +194,7 @@ rightArrow.addEventListener("click", function(){
   changeBigPhoto();
 });
   
- function changeBigPhoto(){            // функция вставляет фото в центр и превью нижней фотки.
+ function changeBigPhoto(){
   mainPhoto.getAttribute("src"); 
   let src2 = slides[counter].dataset["src"];
   mainPhoto.setAttribute("src", src2);
@@ -224,7 +207,7 @@ rightArrow.addEventListener("click", function(){
  } 
 
 
-photos.forEach(function (item, i) { //событие при клике на фото                
+photos.forEach(function (item, i) {               
   item.addEventListener("click", function(){
     list.forEach((item) => {item.classList.remove("preview");});                                                   
   photos.forEach((item) => {item.classList.remove("preview"); 
@@ -235,33 +218,33 @@ photos.forEach(function (item, i) { //событие при клике на фо
 
 
 
-  let src = this.getAttribute("src");   // меняю большое фото при нажатии.
+  let src = this.getAttribute("src");
   mainPhoto.setAttribute("src", src);
 
 
   let name = this.dataset['name'];
   let visibilityText = document.getElementById(name);
 
-  slides.forEach((item) => {item.classList.remove('curry'); // добавляю текстовую информацию при клике
+  slides.forEach((item) => {item.classList.remove('curry');
 })  
   if (visibilityText) {
     visibilityText.classList.add('curry');
   }
   
   
-  counter = i;              // это для связки между переходом на стрелочку и кликом. чтобы начинало листать с того места, на котором остановилось
+  counter = i;             
   } );
   
   });
 
 
-photos.forEach(function (item) {                // анимация при клике на маленькое фото 
+photos.forEach(function (item) {                
   item.addEventListener("click", animPhoto)
 });
 
 
 function animPhoto() {
-  let currentImg = document.querySelector(".client_photo");                 // функция для анимации главного фото
+  let currentImg = document.querySelector(".client_photo");        
   currentImg.classList.remove("animeted_photo");
   setTimeout(() => { currentImg.classList.add("animeted_photo"); }, 100)
 }
@@ -270,11 +253,9 @@ rightArrow.addEventListener("click", animPhoto);
 leftArrow.addEventListener("click", animPhoto);
 
 
-document.querySelectorAll("a[href='#']").forEach(el => {    // убрала дефолтное поведение ссылок 
+document.querySelectorAll("a[href='#']").forEach(el => {    
   el.addEventListener("click", (e) => e.preventDefault())
 })
-
-// секция Gallery of Best Images
 
 $(document).ready(function () {
   let $grid = $(".grid").masonry({
